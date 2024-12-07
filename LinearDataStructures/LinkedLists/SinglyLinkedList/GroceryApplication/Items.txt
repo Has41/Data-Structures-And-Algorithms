@@ -1,0 +1,10 @@
+1,Apple,Fresh red apples,3.50
+2,Banana,Organic bananas,1.20
+3,Milk,Dairy fresh milk,2.00
+4,Bread,Whole grain bread,2.50
+5,Eggs,Farm-fresh eggs,3.00
+6,Rice,Basmati rice,1kg,4.00
+7,Sugar,Granulated sugar,1kg,2.20
+8,Chicken,Fresh chicken,1kg,5.50
+9,Butter,Unsalted butter,3.80
+10,Coffee,Ground coffee beans,250g,6.00
