@@ -107,13 +107,12 @@ void BST<T>::findMinimum(TNode<T>* tRoot) {
     cout << "Minimum is : " << tRoot->getInfo() << endl;
 }
 
-
 template<class T>
 TNode<T>* BST<T>::leftSuccessor(TNode<T>* tRoot) {
-    if (tRoot != 0) {
+    if (tRoot != nullptr) {
         tRoot = tRoot->getLeft();
 
-        while (tRoot->getRight() != 0) {
+        while (tRoot->getRight() != nullptr) {
             tRoot = tRoot->getRight();
         }
         //cout<<"Left Successor is : "<<t_root->getInfo()<<endl;
@@ -178,26 +177,20 @@ void BST<T>::deleteNode(T element) {
                 delete node;
             } else {
                 TNode<T>* parent = getParent(element);
-                TNode<T>* s = leftSuccessor(node);
-                TNode<T>* s_parent = getParent(s->getInfo());
-                TNode<T>* s_sc = nullptr;
-                if (s->getLeft() == nullptr && s->getRight() == nullptr)
-                    s_sc = nullptr;
+                TNode<T>* successor = leftSuccessor(node);
+                TNode<T>* successorParent = getParent(successor->getInfo());
+                if (successor->getLeft() == nullptr && successor->getRight() == nullptr)
+                    successorParent->getRight(nullptr);
                 else
-                    s_sc = s->getLeft();
+                    successorParent->getRight(successor->getLeft());
 
-                if (s == s_parent->getLeft())
-                    s_parent->setLeft(s_sc);
-                else
-                    s_parent->setRight(s_sc);
-
-                s->setLeft(node->getLeft());
-                s->setRight(node->getRight());
+                successor->setLeft(node->getLeft());
+                successor->setRight(node->getRight());
 
                 if (node == parent->getLeft())
-                    parent->setLeft(s);
+                    parent->setLeft(successor);
                 else
-                    parent->setRight(s);
+                    parent->setRight(successor);
             }
         }
     }
