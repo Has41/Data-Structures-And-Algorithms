@@ -7,12 +7,14 @@ void minimumArray(int arr[], int size);
 int maximumArrayIndex(int arr[], int size);
 void linearSearch(int arr[], int size, int element);
 void binarySearch(int arr[], int size, int element);
+void recursiveBinarySearch(int arr[], int element, int beg, int end);
 void selectionSort(int arr[], int size);
 void bubbleSort(int arr[], int size);
 void insertionSort(int arr[], int size);
 
 int main(int argc, char** argv) {
-	int arr[7];
+	// int arr[7];
+	int arr[10];
 	int opt;
 	do {
 		cout << endl;
@@ -25,13 +27,14 @@ int main(int argc, char** argv) {
 		cout << "press 7 for Insertion sort \n";
 		cout << "press 8 for Linear search \n";
 		cout << "press 9 for Binary search \n";
+		cout << "press 10 for Recursive Binary search \n";
 		cout << "Press 0 for exit\n";
 		cout << endl;
 		cin >> opt;
 
 		switch (opt) {
 			case 1:
-				initArray(arr, 7);
+				initArray(arr, 10);
 				break;
 			case 2:
 				displayArray(arr, 7);
@@ -65,6 +68,13 @@ int main(int argc, char** argv) {
 				cout << "Enter your element to search in array: ";
 				cin >> element;
 				binarySearch(arr, 7, element);
+				break;
+			}
+			case 10: {
+				int element;
+				cout << "Enter your element to search in array: ";
+				cin >> element;
+				recursiveBinarySearch(arr, element, 0, 9);
 				break;
 			}
 			case 0: {
@@ -151,6 +161,20 @@ void binarySearch(int arr[], int size, int element) {
 		cout << "Element found in given array at Index " << mid << endl;
 	} else {
 		cout << "Element doesn't exist in given array!";
+	}
+}
+
+void recursiveBinarySearch(int arr[], int element, int beg, int end) {
+	int mid = (beg + end) / 2;
+
+	if (beg > end) {
+		cerr << "Element doesn't exist in given array!";
+	} else if (element == arr[mid]) {
+		cout << "Element found in given array at Index " << mid << endl;
+	} else if (element < arr[mid]) {
+		recursiveBinarySearch(arr, element, beg, mid - 1);
+	} else {
+		recursiveBinarySearch(arr, element, mid + 1, end);
 	}
 }
 
